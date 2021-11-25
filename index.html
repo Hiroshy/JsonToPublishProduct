@@ -1,0 +1,89 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/theme.css">
+    <title>Parsed Custom | WolfSellers</title>
+</head>
+<body>
+    <!-- 
+        > WOLFSELLERS
+            Developer in Adobe
+            Wissell Brayan Hiroshy Pérez Díaz
+            hiroshyperez@wolfsellers.com
+            diaz201819@gmail.com
+    -->
+    <div class="container col-lg-5 px-1 px-md-5 px-lg-1 px-xl-5 pt-5 mx-auto">
+        <div class="card card0 border-0">
+            <div class="row d-flex">
+                <div class="align-self-center">
+                    <div class="card1">
+                        <div class="row px-3 justify-content-center mt-4"> 
+                            <img src="img/logo.png" class="image" id="wolf"> 
+                        </div>
+                    </div>
+                </div>
+                <div class="align-self-center">
+                    <div class="card2 card border-0 px-4 py-5">
+                        <div class="container">
+                            <form id="formJsonTransformer">
+                                <div class="form-group mb-3 text-center">
+                                    <label for="dataJson" class="form-label">
+                                        Json to publish a product by ws | Partner n°1 of Latam
+                                    </label>
+                                    <textarea class="form-control" name="dataJson" id="dataJson"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary" type="button" id="buttonSend">Proccess</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <script>
+                            function copiarAlPortapapeles(id_elemento) {
+                    
+                                var content = document.getElementById(id_elemento);
+                        
+                                content.select();
+                                document.execCommand('copy');
+                            }
+                    
+                            document.getElementById('buttonSend').addEventListener('click',()=>{
+                                var JsonProvider = document.getElementById('dataJson');
+                                var newArrayFinal = new Array();
+                    
+                                let jsonParsed = JSON.parse(JsonProvider.value)
+                                jsonParsed = jsonParsed.products;
+                    
+                                if (Array.isArray(jsonParsed)) {
+                                    let firstConv = new Array()
+                                    for (let index = 0; index < jsonParsed.length; index++) {
+                                        firstConv.push({"products":[jsonParsed[index]]})
+                                        document.getElementById('dataJson').value = JSON.stringify(firstConv)
+                                    }
+                                    // Copia el texto seleccionado
+                                    if (copiarAlPortapapeles('dataJson')) {
+                                        alert('copiado')
+                                    }
+                                }else{
+                                    console.log('error')
+                                }
+                            })
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-blue py-4">
+                <div class="row px-3"> <small class="ml-4 ml-sm-5 mb-2">Copyright &copy; WolfSellers . All rights reserved. Developer : hiroshyperez@wolfsellers.com</small>
+                    <div class="social-contact ml-4 ml-sm-auto"> <span class="fa fa-facebook mr-4 text-sm"></span> <span class="fa fa-google-plus mr-4 text-sm"></span> <span class="fa fa-linkedin mr-4 text-sm"></span> <span class="fa fa-twitter mr-4 mr-sm-5 text-sm"></span> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
